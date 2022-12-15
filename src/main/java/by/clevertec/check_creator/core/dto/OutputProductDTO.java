@@ -1,4 +1,4 @@
-package by.clevertec.check_creator.dto;
+package by.clevertec.check_creator.core.dto;
 
 import java.math.BigDecimal;
 

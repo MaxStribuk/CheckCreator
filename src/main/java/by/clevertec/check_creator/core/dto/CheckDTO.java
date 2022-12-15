@@ -1,6 +1,6 @@
-package by.clevertec.check_creator.dto;
+package by.clevertec.check_creator.core.dto;
 
-import by.clevertec.check_creator.entity.DiscountCardEntity;
+import by.clevertec.check_creator.core.entity.DiscountCardEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;

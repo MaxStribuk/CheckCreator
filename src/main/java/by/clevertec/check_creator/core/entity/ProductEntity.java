@@ -1,4 +1,4 @@
-package by.clevertec.check_creator.entity;
+package by.clevertec.check_creator.core.entity;
 
 import java.math.BigDecimal;
 
