@@ -2,9 +2,9 @@ package by.clevertec.check_creator.dao.api;
 
 import by.clevertec.check_creator.core.entity.ProductEntity;
 
-import java.util.List;
+import java.util.Map;
 
 public interface IProductDAO {
 
-    List<ProductEntity> getAll();
+    Map<Integer, ProductEntity> getAll();
 }
