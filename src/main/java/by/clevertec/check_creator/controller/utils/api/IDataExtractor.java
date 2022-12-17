@@ -7,6 +7,7 @@ import java.util.List;
 public interface IDataExtractor {
 
     List<InputProductDTO> getProducts(String[] args) throws IllegalArgumentException;
+
     /**
      Method returns null if no discount card has been entered
      */
