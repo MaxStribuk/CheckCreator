@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PurchaseDTO {
 
-    private final List<InputProductDTO> products;
+    private List<InputProductDTO> products;
 
     private final Integer numberDiscountCard;
 
@@ -19,5 +19,9 @@ public class PurchaseDTO {
 
     public int getNumberDiscountCard() {
         return numberDiscountCard;
+    }
+
+    public void setProducts(List<InputProductDTO> products) {
+        this.products = products;
     }
 }
