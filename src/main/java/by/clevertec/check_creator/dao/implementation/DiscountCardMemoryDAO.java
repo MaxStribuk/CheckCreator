@@ -26,9 +26,9 @@ public class DiscountCardMemoryDAO implements IDiscountCardDAO {
 
     @Override
     public DiscountCardEntity get(int id) throws IllegalArgumentException {
-        try {
+        if (discountCards.containsKey(id)) {
             return discountCards.get(id);
-        } catch (IndexOutOfBoundsException e) {
+        } else {
             throw new IllegalArgumentException("Discount card with the specified" +
                     " number does not exist");
         }

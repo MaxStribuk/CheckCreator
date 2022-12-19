@@ -27,7 +27,7 @@ public class CheckCreator implements ICheckCreator {
     private static final String TIME_PATTERN = "HH:mm:ss";
     private static final String PRODUCT_PATTERN = "  %3d   %-11s   %6s   %6s\n";
     private static final String PROMOTIONAL_PRODUCT_PATTERN =
-            "  Товар на акции, со скидкой %8s\n";
+            "  Sale item, with discount %10s\n";
     private static final String TOTAL_PATTERN = """
               ___________________________________
               
@@ -35,7 +35,7 @@ public class CheckCreator implements ICheckCreator {
             """;
     private static final String DISCOUNT_CARD_PATTERN = """
 
-              Скидочная карта №%d,скидка %9s
+              Discount card №%d, discount %8s
             """;
 
     public CheckCreator() {

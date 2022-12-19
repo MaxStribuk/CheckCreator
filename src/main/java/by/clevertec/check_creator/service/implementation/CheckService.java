@@ -20,7 +20,8 @@ public class CheckService implements ICheckService {
     }
 
     @Override
-    public CheckDTO createCheck(PurchaseDTO purchase) {
+    public CheckDTO createCheck(PurchaseDTO purchase)
+            throws IllegalArgumentException {
         ReceiptDTO receipt = receiptService.createReceipt(purchase);
         return new CheckDTO(checkCreator.createHeader(receipt),
                 checkCreator.createBody(receipt),

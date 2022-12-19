@@ -17,7 +17,7 @@ public class PurchaseDTO {
         return products;
     }
 
-    public int getNumberDiscountCard() {
+    public Integer getNumberDiscountCard() {
         return numberDiscountCard;
     }
 
