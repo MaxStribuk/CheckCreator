@@ -1,6 +1,6 @@
-package by.clevertec.check_creator.controller.utils.implementation;
+package by.clevertec.check_creator.service.utils.implementation;
 
-import by.clevertec.check_creator.controller.utils.api.ICostCalculator;
+import by.clevertec.check_creator.service.utils.api.ICostCalculator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

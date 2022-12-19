@@ -1,4 +1,4 @@
-package by.clevertec.check_creator.controller.utils.api;
+package by.clevertec.check_creator.service.utils.api;
 
 import java.math.BigDecimal;
 

@@ -1,40 +1,29 @@
 package by.clevertec.check_creator.service.implementation;
 
 import by.clevertec.check_creator.core.dto.CheckDTO;
-import by.clevertec.check_creator.core.dto.OutputProductDTO;
 import by.clevertec.check_creator.core.dto.PurchaseDTO;
-import by.clevertec.check_creator.core.entity.DiscountCardEntity;
-import by.clevertec.check_creator.service.api.ICheckService;
-import by.clevertec.check_creator.service.api.IDiscountCardService;
-import by.clevertec.check_creator.service.api.IInputProductService;
-import by.clevertec.check_creator.service.api.IOutputProductService;
-
-import java.time.LocalDateTime;
-import java.util.List;
+import by.clevertec.check_creator.core.dto.ReceiptDTO;
+import by.clevertec.check_creator.controller.utils.implementation.api.ICheckService;
+import by.clevertec.check_creator.controller.utils.implementation.api.IReceiptService;
+import by.clevertec.check_creator.service.fabrics.ReceiptServiceSingleton;
+import by.clevertec.check_creator.service.utils.api.ICheckCreator;
+import by.clevertec.check_creator.service.utils.fabrics.CheckCreatorSingleton;
 
 public class CheckService implements ICheckService {
 
-    private final IDiscountCardService discountCardService;
-    private final IOutputProductService outputProductService;
-    private final IInputProductService inputProductService;
+    private final IReceiptService receiptService;
+    private final ICheckCreator checkCreator;
 
-    public CheckService(IDiscountCardService discountCardService,
-                        IOutputProductService outputProductService,
-                        IInputProductService inputProductService) {
-        this.discountCardService = discountCardService;
-        this.outputProductService = outputProductService;
-        this.inputProductService = inputProductService;
+    public CheckService() {
+        this.receiptService = ReceiptServiceSingleton.getInstance();
+        this.checkCreator = CheckCreatorSingleton.getInstance();
     }
 
     @Override
-    public CheckDTO createCheck(PurchaseDTO purchase)
-            throws IllegalArgumentException {
-        purchase.setProducts(inputProductService.group(purchase.getProducts()));
-        List<OutputProductDTO> outputProducts = outputProductService.get(
-                purchase.getProducts());
-        DiscountCardEntity discountCard = discountCardService.get(
-                purchase.getNumberDiscountCard());
-        LocalDateTime purchaseTime = LocalDateTime.now();
-        return new CheckDTO(outputProducts, discountCard, purchaseTime);
+    public CheckDTO createCheck(PurchaseDTO purchase) {
+        ReceiptDTO receipt = receiptService.createReceipt(purchase);
+        return new CheckDTO(checkCreator.createHeader(receipt),
+                checkCreator.createBody(receipt),
+                checkCreator.createTotal(receipt));
     }
 }

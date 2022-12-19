@@ -1,13 +1,13 @@
 package by.clevertec.check_creator.service.fabrics;
 
-import by.clevertec.check_creator.service.api.ICheckService;
+import by.clevertec.check_creator.controller.utils.implementation.api.ICheckService;
 import by.clevertec.check_creator.service.implementation.CheckService;
 
-public class CheckServiceSingleton {
+public class CheckServiceSengleton {
 
     private static volatile ICheckService instance;
 
-    private CheckServiceSingleton() {
+    private CheckServiceSengleton() {
     }
 
     public static ICheckService getInstance() {
@@ -15,12 +15,9 @@ public class CheckServiceSingleton {
         if (service != null) {
             return service;
         }
-        synchronized (CheckServiceSingleton.class) {
+        synchronized (CheckServiceSengleton.class) {
             if (instance == null) {
-                instance = new CheckService(
-                        DiscountCardServiceSingleton.getInstance(),
-                        OutputProductServiceSingleton.getInstance(),
-                        InputProductServiceSingleton.getInstance());
+                instance = new CheckService();
             }
             return instance;
         }

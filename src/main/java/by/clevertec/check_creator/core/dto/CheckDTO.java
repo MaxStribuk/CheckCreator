@@ -1,32 +1,19 @@
 package by.clevertec.check_creator.core.dto;
 
-import by.clevertec.check_creator.core.entity.DiscountCardEntity;
-
-import java.time.LocalDateTime;
-import java.util.List;
-
 public class CheckDTO {
 
-    private final List<OutputProductDTO> products;
-    private final DiscountCardEntity discountCard;
-    private final LocalDateTime purchaseTime;
+    private final String head;
+    private final String body;
+    private final String total;
 
-    public CheckDTO(List<OutputProductDTO> products,
-                    DiscountCardEntity discountCard, LocalDateTime purchaseTime) {
-        this.products = products;
-        this.discountCard = discountCard;
-        this.purchaseTime = purchaseTime;
+    public CheckDTO(String head, String body, String total) {
+        this.head = head;
+        this.body = body;
+        this.total = total;
     }
 
-    public List<OutputProductDTO> getProducts() {
-        return products;
-    }
-
-    public DiscountCardEntity getDiscountCard() {
-        return discountCard;
-    }
-
-    public LocalDateTime getPurchaseTime() {
-        return purchaseTime;
+    @Override
+    public String toString() {
+        return head + body + total;
     }
 }

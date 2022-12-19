@@ -1,14 +1,14 @@
-package by.clevertec.check_creator.controller.utils.implementation;
+package by.clevertec.check_creator.service.utils.implementation;
 
-import by.clevertec.check_creator.controller.utils.api.ICheckPrinting;
-import by.clevertec.check_creator.core.dto.CheckDTO;
 import by.clevertec.check_creator.core.dto.OutputProductDTO;
+import by.clevertec.check_creator.core.dto.ReceiptDTO;
+import by.clevertec.check_creator.service.utils.api.ICheckCreator;
 
 import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class CheckConsolePrinting implements ICheckPrinting {
+public class CheckCreator implements ICheckCreator {
 
     private final CostCalculator costCalculator;
     private static final String CHECK_HEADER = """
@@ -38,56 +38,55 @@ public class CheckConsolePrinting implements ICheckPrinting {
               Скидочная карта №%d,скидка %9s
             """;
 
-    public CheckConsolePrinting() {
+    public CheckCreator() {
         this.costCalculator = new CostCalculator();
     }
 
     @Override
-    public void printCheck(CheckDTO check) {
-        headerPrinting(check);
-        bodyPrinting(check);
-        totalPrinting(check);
-    }
-
-    private void headerPrinting(CheckDTO check) {
-        System.out.printf(CHECK_HEADER,
+    public String createHeader(ReceiptDTO check) {
+        return String.format(CHECK_HEADER,
                 check.getPurchaseTime()
                         .format(DateTimeFormatter.ofPattern(DATE_PATTERN)),
                 check.getPurchaseTime()
                         .format(DateTimeFormatter.ofPattern(TIME_PATTERN)));
     }
 
-    private void bodyPrinting(CheckDTO check) {
+    public String createBody(ReceiptDTO check) {
+        StringBuilder body = new StringBuilder();
         List<OutputProductDTO> products = check.getProducts();
         for (OutputProductDTO product : products) {
-            productPrinting(product);
+            productPrinting(product, body);
         }
+        return body.toString();
     }
 
-    private void productPrinting(OutputProductDTO product) {
+    private void productPrinting(OutputProductDTO product, StringBuilder body) {
         int amount = product.getAmount();
         String title = product.getTitle();
         BigDecimal price = product.getPrice();
         BigDecimal total = costCalculator.calculateProductTotal(amount, price);
-        System.out.printf(PRODUCT_PATTERN,
-                amount, title, "$" + price, "$" + total);
+        body.append(String.format(PRODUCT_PATTERN,
+                amount, title, "$" + price, "$" + total));
         boolean promotional = product.isPromotional();
         if (promotional && amount > 5) {
             total = costCalculator.calculateValueWithPromotionalDiscount(total);
-            System.out.printf(PROMOTIONAL_PRODUCT_PATTERN, "$" + total);
+            body.append(String.format(PROMOTIONAL_PRODUCT_PATTERN, "$" + total));
         }
         costCalculator.add(total);
     }
 
-    private void totalPrinting(CheckDTO check) {
+    public String createTotal(ReceiptDTO check) {
+        StringBuilder stringTotal = new StringBuilder();
         if (check.getDiscountCard() != null
                 && check.getDiscountCard().isActive()) {
             BigDecimal discount = costCalculator.calculateDiscountWithCard(
                     costCalculator.getTotal());
-            System.out.printf(DISCOUNT_CARD_PATTERN,
-                    check.getDiscountCard().getId(), "$" + discount);
+            stringTotal.append(String.format(DISCOUNT_CARD_PATTERN,
+                    check.getDiscountCard().getId(), "$" + discount));
             costCalculator.subtract(discount);
         }
-        System.out.printf(TOTAL_PATTERN, "$" + costCalculator.getTotal());
+        stringTotal.append(String.format(
+                TOTAL_PATTERN, "$" + costCalculator.getTotal()));
+        return stringTotal.toString();
     }
 }

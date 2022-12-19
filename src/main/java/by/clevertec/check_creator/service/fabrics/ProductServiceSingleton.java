@@ -1,7 +1,7 @@
 package by.clevertec.check_creator.service.fabrics;
 
 import by.clevertec.check_creator.dao.fabrics.ProductDAOSingleton;
-import by.clevertec.check_creator.service.api.IProductService;
+import by.clevertec.check_creator.controller.utils.implementation.api.IProductService;
 import by.clevertec.check_creator.service.implementation.ProductService;
 
 public class ProductServiceSingleton {
