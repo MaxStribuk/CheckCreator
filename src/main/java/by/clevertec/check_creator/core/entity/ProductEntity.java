@@ -4,17 +4,10 @@ import java.math.BigDecimal;
 
 public class ProductEntity {
 
-    private int id;
+    private final int id;
     private final String title;
     private final BigDecimal price;
     private final boolean isPromotional;
-
-    public ProductEntity(String title,
-                         BigDecimal price, boolean isPromotional) {
-        this.title = title;
-        this.price = price;
-        this.isPromotional = isPromotional;
-    }
 
     public ProductEntity(int id, String title, BigDecimal price, boolean isPromotional) {
         this.id = id;

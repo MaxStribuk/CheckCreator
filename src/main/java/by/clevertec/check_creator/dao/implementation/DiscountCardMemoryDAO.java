@@ -29,8 +29,8 @@ public class DiscountCardMemoryDAO implements IDiscountCardDAO {
         try {
             return discountCards.get(id);
         } catch (IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException("Дисконтная карта с указанным" +
-                    " номером не существует");
+            throw new IllegalArgumentException("Discount card with the specified" +
+                    " number does not exist");
         }
     }
 }

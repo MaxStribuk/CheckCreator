@@ -29,8 +29,8 @@ public class ProductService implements IProductService {
                 .map(Map.Entry::getValue)
                 .toList();
         if (inputProductIds.size() != productEntities.size()) {
-            throw new IllegalArgumentException("Товар с введенным id"
-                    + " на складе отсутствует");
+            throw new IllegalArgumentException("Product with the entered id" +
+                    " out of stock");
         } else {
             return productEntities;
         }

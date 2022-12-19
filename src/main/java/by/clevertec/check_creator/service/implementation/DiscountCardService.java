@@ -21,8 +21,8 @@ public class DiscountCardService implements IDiscountCardService {
             return null;
         }
         if (id <= 0) {
-            throw new IllegalArgumentException("Дисконтная карта с указанным" +
-                    " номером не существует");
+            throw new IllegalArgumentException("Discount card with the specified" +
+                    " number does not exist");
         }
         return dao.get(id);
     }

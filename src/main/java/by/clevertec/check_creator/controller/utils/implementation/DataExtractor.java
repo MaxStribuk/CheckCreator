@@ -33,8 +33,8 @@ public class DataExtractor implements IDataExtractor {
             }
             return inputProducts;
         } catch (RuntimeException e) {
-            throw new IllegalArgumentException("id / количество продуктов" +
-                    " были заданы некорректно");
+            throw new IllegalArgumentException("id / number of products" +
+                    " were set incorrectly");
         }
     }
 
@@ -61,8 +61,8 @@ public class DataExtractor implements IDataExtractor {
             }
             return discountCards.size() == 0 ? null : discountCards.get(0);
         } catch (RuntimeException e) {
-            throw new IllegalArgumentException("данные дисконтной карты" +
-                    " были заданы некорректно");
+            throw new IllegalArgumentException("discount card details" +
+                    " were set incorrectly");
         }
     }
 }
