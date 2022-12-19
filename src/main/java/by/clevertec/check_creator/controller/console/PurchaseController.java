@@ -1,6 +1,6 @@
 package by.clevertec.check_creator.controller.console;
 
-import by.clevertec.check_creator.controller.utils.implementation.CheckConsolePrinting;
+import by.clevertec.check_creator.controller.utils.fabrics.CheckPrintingSingleton;
 import by.clevertec.check_creator.controller.utils.api.ICheckPrinting;
 import by.clevertec.check_creator.controller.utils.api.IDataExtractor;
 import by.clevertec.check_creator.controller.utils.fabrics.DataExtractorSingleton;
@@ -21,13 +21,13 @@ public class PurchaseController {
     public PurchaseController() {
         this.dataExtractor = DataExtractorSingleton.getInstance();
         this.checkService = CheckServiceSingleton.getInstance();
-        this.checkPrinting = new CheckConsolePrinting();
+        this.checkPrinting = CheckPrintingSingleton.getInstance();
     }
 
     public void start(String[] args) throws IllegalArgumentException {
         PurchaseDTO purchase = createPurchase(args);
         CheckDTO check = checkService.createCheck(purchase);
-        checkPrinting.print(check);
+        checkPrinting.printCheck(check);
     }
 
     private PurchaseDTO createPurchase(String[] args)

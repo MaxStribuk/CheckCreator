@@ -6,7 +6,6 @@ import by.clevertec.check_creator.core.entity.ProductEntity;
 import by.clevertec.check_creator.service.api.IOutputProductService;
 import by.clevertec.check_creator.service.api.IProductService;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +32,7 @@ public class OutputProductService implements IOutputProductService {
                     productEntity.getTitle(),
                     product.getAmount(),
                     productEntity.isPromotional(),
-                    productEntity.getPrice(),
-                    new BigDecimal(0)));
+                    productEntity.getPrice()));
         }
         return outputProducts;
     }

@@ -8,15 +8,13 @@ public class OutputProductDTO {
     private final int amount;
     private final boolean isPromotional;
     private final BigDecimal price;
-    private final BigDecimal cost;
 
     public OutputProductDTO(String title, int amount, boolean isPromotional,
-                            BigDecimal price, BigDecimal cost) {
+                            BigDecimal price) {
         this.title = title;
         this.amount = amount;
         this.isPromotional = isPromotional;
         this.price = price;
-        this.cost = cost;
     }
 
     public String getTitle() {
@@ -33,9 +31,5 @@ public class OutputProductDTO {
 
     public BigDecimal getPrice() {
         return price;
-    }
-
-    public BigDecimal getCost() {
-        return cost;
     }
 }
