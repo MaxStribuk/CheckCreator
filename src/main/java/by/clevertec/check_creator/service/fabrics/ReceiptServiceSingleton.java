@@ -1,6 +1,6 @@
 package by.clevertec.check_creator.service.fabrics;
 
-import by.clevertec.check_creator.controller.utils.implementation.api.IReceiptService;
+import by.clevertec.check_creator.service.api.IReceiptService;
 import by.clevertec.check_creator.service.implementation.ReceiptService;
 
 public class ReceiptServiceSingleton {

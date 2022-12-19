@@ -1,6 +1,6 @@
 package by.clevertec.check_creator.service.fabrics;
 
-import by.clevertec.check_creator.controller.utils.implementation.api.ICheckService;
+import by.clevertec.check_creator.service.api.ICheckService;
 import by.clevertec.check_creator.service.implementation.CheckService;
 
 public class CheckServiceSengleton {

@@ -1,7 +1,7 @@
 package by.clevertec.check_creator.service.implementation;
 
 import by.clevertec.check_creator.core.dto.InputProductDTO;
-import by.clevertec.check_creator.controller.utils.implementation.api.IInputProductService;
+import by.clevertec.check_creator.service.api.IInputProductService;
 
 import java.util.List;
 import java.util.stream.Collectors;

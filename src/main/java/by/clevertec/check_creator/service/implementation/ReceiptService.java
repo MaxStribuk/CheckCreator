@@ -4,10 +4,10 @@ import by.clevertec.check_creator.core.dto.ReceiptDTO;
 import by.clevertec.check_creator.core.dto.OutputProductDTO;
 import by.clevertec.check_creator.core.dto.PurchaseDTO;
 import by.clevertec.check_creator.core.entity.DiscountCardEntity;
-import by.clevertec.check_creator.controller.utils.implementation.api.IReceiptService;
-import by.clevertec.check_creator.controller.utils.implementation.api.IDiscountCardService;
-import by.clevertec.check_creator.controller.utils.implementation.api.IInputProductService;
-import by.clevertec.check_creator.controller.utils.implementation.api.IOutputProductService;
+import by.clevertec.check_creator.service.api.IReceiptService;
+import by.clevertec.check_creator.service.api.IDiscountCardService;
+import by.clevertec.check_creator.service.api.IInputProductService;
+import by.clevertec.check_creator.service.api.IOutputProductService;
 
 import java.time.LocalDateTime;
 import java.util.List;

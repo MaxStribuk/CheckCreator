@@ -3,8 +3,8 @@ package by.clevertec.check_creator.service.implementation;
 import by.clevertec.check_creator.core.dto.InputProductDTO;
 import by.clevertec.check_creator.core.dto.OutputProductDTO;
 import by.clevertec.check_creator.core.entity.ProductEntity;
-import by.clevertec.check_creator.controller.utils.implementation.api.IOutputProductService;
-import by.clevertec.check_creator.controller.utils.implementation.api.IProductService;
+import by.clevertec.check_creator.service.api.IOutputProductService;
+import by.clevertec.check_creator.service.api.IProductService;
 
 import java.util.ArrayList;
 import java.util.List;

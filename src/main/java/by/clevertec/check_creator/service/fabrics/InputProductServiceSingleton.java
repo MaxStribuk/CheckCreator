@@ -1,6 +1,6 @@
 package by.clevertec.check_creator.service.fabrics;
 
-import by.clevertec.check_creator.controller.utils.implementation.api.IInputProductService;
+import by.clevertec.check_creator.service.api.IInputProductService;
 import by.clevertec.check_creator.service.implementation.InputProductService;
 
 public class InputProductServiceSingleton {

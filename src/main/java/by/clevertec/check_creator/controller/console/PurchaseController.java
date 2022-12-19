@@ -6,7 +6,7 @@ import by.clevertec.check_creator.controller.utils.fabrics.DataExtractorSingleto
 import by.clevertec.check_creator.core.dto.CheckDTO;
 import by.clevertec.check_creator.core.dto.InputProductDTO;
 import by.clevertec.check_creator.core.dto.PurchaseDTO;
-import by.clevertec.check_creator.controller.utils.implementation.api.ICheckService;
+import by.clevertec.check_creator.service.api.ICheckService;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package by.clevertec.check_creator.service.fabrics;
 
 import by.clevertec.check_creator.dao.fabrics.DiscountCardDAOSingleton;
-import by.clevertec.check_creator.controller.utils.implementation.api.IDiscountCardService;
+import by.clevertec.check_creator.service.api.IDiscountCardService;
 import by.clevertec.check_creator.service.implementation.DiscountCardService;
 
 public class DiscountCardServiceSingleton {
