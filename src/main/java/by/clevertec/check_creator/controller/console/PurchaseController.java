@@ -24,7 +24,7 @@ public class PurchaseController {
         this.checkPrinting = CheckPrintingSingleton.getInstance();
     }
 
-    public void start(String[] args) throws IllegalArgumentException {
+    public void createCheck(String[] args) throws IllegalArgumentException {
         PurchaseDTO purchase = createPurchase(args);
         CheckDTO check = checkService.createCheck(purchase);
         checkPrinting.print(check);

@@ -22,6 +22,7 @@ public class CheckCreator implements ICheckCreator {
               ___________________________________
               
               QTY   DESCRIPTION    PRICE    TOTAL
+              
             """;
     private static final String DATE_PATTERN = "dd/MM/yyyy";
     private static final String TIME_PATTERN = "HH:mm:ss";
@@ -35,7 +36,7 @@ public class CheckCreator implements ICheckCreator {
             """;
     private static final String DISCOUNT_CARD_PATTERN = """
 
-              Discount card №%d, discount %8s
+              Discount card %d, discount %9s
             """;
 
     public CheckCreator() {

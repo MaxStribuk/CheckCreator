@@ -28,11 +28,13 @@ public class OutputProductService implements IOutputProductService {
                             inputProduct.getId() == productEntity.getId())
                     .toList()
                     .get(0);
-            outputProducts.add(new OutputProductDTO(
-                    productEntity.getTitle(),
-                    product.getAmount(),
-                    productEntity.isPromotional(),
-                    productEntity.getPrice()));
+            outputProducts.add(
+                    OutputProductDTO.OutputProductBuilder.create()
+                            .setTitle(productEntity.getTitle())
+                            .setAmount(product.getAmount())
+                            .setIsPromotional(productEntity.isPromotional())
+                            .setPrice(productEntity.getPrice())
+                            .build());
         }
         return outputProducts;
     }
