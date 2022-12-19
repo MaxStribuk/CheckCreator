@@ -31,7 +31,7 @@ public class CheckCreator implements ICheckCreator {
     private static final String TOTAL_PATTERN = """
               ___________________________________
               
-              TOTAL%30.4s
+              TOTAL%30s
             """;
     private static final String DISCOUNT_CARD_PATTERN = """
 

@@ -2,18 +2,18 @@ package by.clevertec.check_creator.core.dto;
 
 public class CheckDTO {
 
-    private final String head;
+    private final String header;
     private final String body;
     private final String total;
 
-    public CheckDTO(String head, String body, String total) {
-        this.head = head;
+    public CheckDTO(String header, String body, String total) {
+        this.header = header;
         this.body = body;
         this.total = total;
     }
 
     @Override
     public String toString() {
-        return head + body + total;
+        return header + body + total;
     }
 }
