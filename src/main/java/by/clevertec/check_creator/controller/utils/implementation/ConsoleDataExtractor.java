@@ -1,14 +1,14 @@
 package by.clevertec.check_creator.controller.utils.implementation;
 
-import by.clevertec.check_creator.controller.utils.api.IDataExtractor;
+import by.clevertec.check_creator.controller.utils.api.IDataConsoleExtractor;
 import by.clevertec.check_creator.core.dto.InputProductDTO;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class DataExtractor implements IDataExtractor {
+public class ConsoleDataExtractor implements IDataConsoleExtractor {
 
-    private static final String PARAM_CARD = "card";
+    private static final String CARD_PARAM_NAME = "card";
     private static final String PATTERN = "-";
 
     @Override
@@ -17,7 +17,7 @@ public class DataExtractor implements IDataExtractor {
         try {
             List<InputProductDTO> inputProducts = Arrays.stream(args)
                     .map(arg -> arg.split(PATTERN))
-                    .filter(arg -> !arg[0].equalsIgnoreCase(PARAM_CARD))
+                    .filter(arg -> !arg[0].equalsIgnoreCase(CARD_PARAM_NAME))
                     .map(arg -> {
                         if (arg.length > 2) {
                             throw new IllegalArgumentException();
@@ -47,12 +47,12 @@ public class DataExtractor implements IDataExtractor {
         try {
             List<Integer> discountCards = Arrays.stream(args)
                     .map(arg -> arg.split(PATTERN))
-                    .filter(arg -> arg[0].equalsIgnoreCase(PARAM_CARD))
+                    .filter(arg -> arg[0].equalsIgnoreCase(CARD_PARAM_NAME))
                     .map(arg -> {
                         if (arg.length > 2) {
                             throw new IllegalArgumentException();
                         } else {
-                            return Integer.parseInt(arg[1]);
+                            return Integer.valueOf(arg[1]);
                         }
                     })
                     .toList();

@@ -3,8 +3,8 @@ package by.clevertec.check_creator.controller.console;
 import by.clevertec.check_creator.controller.utils.api.ICheckPrinting;
 import by.clevertec.check_creator.controller.utils.fabrics.CheckPrintingSingleton;
 import by.clevertec.check_creator.service.fabrics.CheckServiceSengleton;
-import by.clevertec.check_creator.controller.utils.api.IDataExtractor;
-import by.clevertec.check_creator.controller.utils.fabrics.DataExtractorSingleton;
+import by.clevertec.check_creator.controller.utils.api.IDataConsoleExtractor;
+import by.clevertec.check_creator.controller.utils.fabrics.DataConsoleExtractorSingleton;
 import by.clevertec.check_creator.core.dto.CheckDTO;
 import by.clevertec.check_creator.core.dto.InputProductDTO;
 import by.clevertec.check_creator.core.dto.PurchaseDTO;
@@ -14,12 +14,12 @@ import java.util.List;
 
 public class PurchaseController {
 
-    private final IDataExtractor dataExtractor;
+    private final IDataConsoleExtractor dataExtractor;
     private final ICheckService checkService;
     private final ICheckPrinting checkPrinting;
 
     public PurchaseController() {
-        this.dataExtractor = DataExtractorSingleton.getInstance();
+        this.dataExtractor = DataConsoleExtractorSingleton.getInstance();
         this.checkService = CheckServiceSengleton.getInstance();
         this.checkPrinting = CheckPrintingSingleton.getInstance();
     }

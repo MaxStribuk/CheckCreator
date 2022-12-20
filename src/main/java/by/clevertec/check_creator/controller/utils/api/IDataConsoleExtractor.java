@@ -4,7 +4,7 @@ import by.clevertec.check_creator.core.dto.InputProductDTO;
 
 import java.util.List;
 
-public interface IDataExtractor {
+public interface IDataConsoleExtractor {
 
     List<InputProductDTO> getProducts(String[] args) throws IllegalArgumentException;
 
