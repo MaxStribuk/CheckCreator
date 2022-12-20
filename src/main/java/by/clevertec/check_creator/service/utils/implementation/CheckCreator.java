@@ -5,6 +5,7 @@ import by.clevertec.check_creator.core.dto.ReceiptDTO;
 import by.clevertec.check_creator.service.utils.api.ICheckCreator;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -45,23 +46,22 @@ public class CheckCreator implements ICheckCreator {
 
     @Override
     public String createHeader(ReceiptDTO check) {
+        LocalDateTime purchaseTime = check.getPurchaseTime();
         return String.format(CHECK_HEADER,
-                check.getPurchaseTime()
-                        .format(DateTimeFormatter.ofPattern(DATE_PATTERN)),
-                check.getPurchaseTime()
-                        .format(DateTimeFormatter.ofPattern(TIME_PATTERN)));
+                purchaseTime.format(DateTimeFormatter.ofPattern(DATE_PATTERN)),
+                purchaseTime.format(DateTimeFormatter.ofPattern(TIME_PATTERN)));
     }
 
     public String createBody(ReceiptDTO check) {
         StringBuilder body = new StringBuilder();
         List<OutputProductDTO> products = check.getProducts();
         for (OutputProductDTO product : products) {
-            productPrinting(product, body);
+            addProduct(product, body);
         }
         return body.toString();
     }
 
-    private void productPrinting(OutputProductDTO product, StringBuilder body) {
+    private void addProduct(OutputProductDTO product, StringBuilder body) {
         int amount = product.getAmount();
         String title = product.getTitle();
         BigDecimal price = product.getPrice();
@@ -77,17 +77,17 @@ public class CheckCreator implements ICheckCreator {
     }
 
     public String createTotal(ReceiptDTO check) {
-        StringBuilder stringTotal = new StringBuilder();
+        StringBuilder total = new StringBuilder();
         if (check.getDiscountCard() != null
                 && check.getDiscountCard().isActive()) {
             BigDecimal discount = costCalculator.calculateDiscountWithCard(
                     costCalculator.getTotal());
-            stringTotal.append(String.format(DISCOUNT_CARD_PATTERN,
+            total.append(String.format(DISCOUNT_CARD_PATTERN,
                     check.getDiscountCard().getId(), "$" + discount));
             costCalculator.subtract(discount);
         }
-        stringTotal.append(String.format(
+        total.append(String.format(
                 TOTAL_PATTERN, "$" + costCalculator.getTotal()));
-        return stringTotal.toString();
+        return total.toString();
     }
 }

@@ -8,8 +8,8 @@ import java.math.RoundingMode;
 public class CostCalculator implements ICostCalculator {
 
     private BigDecimal total;
-    private static final int cardDiscount = 10;
-    private static final int promotionalDiscount = 10;
+    private static final int CARD_DISCOUNT = 10;
+    private static final int PROMOTIONAL_DISCOUNT = 10;
     private static final int ONE_HUNDRED_PERCENT = 100;
 
     public BigDecimal getTotal() {
@@ -39,13 +39,13 @@ public class CostCalculator implements ICostCalculator {
     @Override
     public BigDecimal calculateValueWithPromotionalDiscount(BigDecimal value) {
         return value.multiply(BigDecimal.valueOf(
-                        (ONE_HUNDRED_PERCENT - promotionalDiscount) * 1. / ONE_HUNDRED_PERCENT))
+                        (ONE_HUNDRED_PERCENT - PROMOTIONAL_DISCOUNT) * 1. / ONE_HUNDRED_PERCENT))
                 .setScale(2, RoundingMode.HALF_UP);
     }
 
     public BigDecimal calculateDiscountWithCard(BigDecimal value) {
         return value.multiply(BigDecimal.valueOf(
-                        cardDiscount * 1. / ONE_HUNDRED_PERCENT))
+                        CARD_DISCOUNT * 1. / ONE_HUNDRED_PERCENT))
                 .setScale(2, RoundingMode.HALF_UP);
     }
 }
