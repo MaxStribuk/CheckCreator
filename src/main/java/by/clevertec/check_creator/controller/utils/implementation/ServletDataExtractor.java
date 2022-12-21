@@ -3,16 +3,33 @@ package by.clevertec.check_creator.controller.utils.implementation;
 import by.clevertec.check_creator.controller.utils.api.IDataServletExtractor;
 import by.clevertec.check_creator.core.dto.InputProductDTO;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ServletDataExtractor implements IDataServletExtractor {
 
+    private static final String CARD_PARAM_NAME = "card";
 
     @Override
     public List<InputProductDTO> getProducts(Map<String, String[]> parameterMap)
             throws IllegalArgumentException {
-        return null;
+        try {
+            return parameterMap.entrySet()
+                    .stream()
+                    .filter(entry -> !entry.getKey().equalsIgnoreCase(CARD_PARAM_NAME))
+                    .map(entry -> new InputProductDTO(
+                            Integer.parseInt(entry.getKey()),
+                            Arrays.stream(entry.getValue())
+                                    .map(Integer::parseInt)
+                                    .reduce(Integer::sum)
+                                    .orElse(0)))
+                    .collect(Collectors.toList());
+        } catch (RuntimeException e) {
+            throw new IllegalArgumentException("id / number of products" +
+                    " were set incorrectly");
+        }
     }
 
 
