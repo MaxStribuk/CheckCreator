@@ -6,7 +6,6 @@ import by.clevertec.check_creator.core.dto.InputProductDTO;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ServletDataExtractor implements IDataServletExtractor {
 
@@ -16,7 +15,7 @@ public class ServletDataExtractor implements IDataServletExtractor {
     public List<InputProductDTO> getProducts(Map<String, String[]> parameterMap)
             throws IllegalArgumentException {
         try {
-            return parameterMap.entrySet()
+            List<InputProductDTO> products = parameterMap.entrySet()
                     .stream()
                     .filter(entry -> !entry.getKey().equalsIgnoreCase(CARD_PARAM_NAME))
                     .map(entry -> new InputProductDTO(
@@ -25,7 +24,11 @@ public class ServletDataExtractor implements IDataServletExtractor {
                                     .map(Integer::parseInt)
                                     .reduce(Integer::sum)
                                     .orElse(0)))
-                    .collect(Collectors.toList());
+                    .toList();
+            if (products.size() == 0) {
+                throw new IllegalArgumentException();
+            }
+            return products;
         } catch (RuntimeException e) {
             throw new IllegalArgumentException("id / number of products" +
                     " were set incorrectly");
