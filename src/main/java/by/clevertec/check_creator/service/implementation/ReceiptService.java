@@ -6,7 +6,6 @@ import by.clevertec.check_creator.core.dto.PurchaseDTO;
 import by.clevertec.check_creator.core.entity.DiscountCardEntity;
 import by.clevertec.check_creator.service.api.IReceiptService;
 import by.clevertec.check_creator.service.api.IDiscountCardService;
-import by.clevertec.check_creator.service.api.IInputProductService;
 import by.clevertec.check_creator.service.api.IOutputProductService;
 
 import java.time.LocalDateTime;
@@ -16,20 +15,16 @@ public class ReceiptService implements IReceiptService {
 
     private final IDiscountCardService discountCardService;
     private final IOutputProductService outputProductService;
-    private final IInputProductService inputProductService;
 
     public ReceiptService(IDiscountCardService discountCardService,
-                          IOutputProductService outputProductService,
-                          IInputProductService inputProductService) {
+                          IOutputProductService outputProductService) {
         this.discountCardService = discountCardService;
         this.outputProductService = outputProductService;
-        this.inputProductService = inputProductService;
     }
 
     @Override
     public ReceiptDTO createReceipt(PurchaseDTO purchase)
             throws IllegalArgumentException {
-        purchase.setProducts(inputProductService.group(purchase.getProducts()));
         List<OutputProductDTO> outputProducts = outputProductService.get(
                 purchase.getProducts());
         DiscountCardEntity discountCard = discountCardService.get(

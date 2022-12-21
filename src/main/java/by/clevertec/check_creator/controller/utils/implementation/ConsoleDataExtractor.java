@@ -5,6 +5,7 @@ import by.clevertec.check_creator.core.dto.InputProductDTO;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConsoleDataExtractor implements IDataConsoleExtractor {
 
@@ -17,16 +18,18 @@ public class ConsoleDataExtractor implements IDataConsoleExtractor {
         try {
             List<InputProductDTO> inputProducts = Arrays.stream(args)
                     .map(arg -> arg.split(PATTERN))
-                    .filter(arg -> !arg[0].equalsIgnoreCase(CARD_PARAM_NAME))
-                    .map(arg -> {
+                    .filter(arg -> {
                         if (arg.length > 2) {
                             throw new IllegalArgumentException();
-                        } else {
-                            return new InputProductDTO(
-                                    Integer.parseInt(arg[0]),
-                                    Integer.parseInt(arg[1]));
                         }
-                    })
+                        return !arg[0].equalsIgnoreCase(CARD_PARAM_NAME);})
+                    .collect(Collectors.groupingBy(arg-> Integer.parseInt(arg[0]),
+                            Collectors.summingInt(arg-> Integer.parseInt(arg[1]))))
+                    .entrySet()
+                    .stream()
+                    .map(entry -> new InputProductDTO(
+                                    entry.getKey(),
+                                    entry.getValue()))
                     .toList();
             if (inputProducts.size() == 0) {
                 throw new IllegalArgumentException();

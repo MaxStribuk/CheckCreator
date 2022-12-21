@@ -19,8 +19,7 @@ public class ReceiptServiceSingleton {
             if (instance == null) {
                 instance = new ReceiptService(
                         DiscountCardServiceSingleton.getInstance(),
-                        OutputProductServiceSingleton.getInstance(),
-                        InputProductServiceSingleton.getInstance());
+                        OutputProductServiceSingleton.getInstance());
             }
             return instance;
         }
