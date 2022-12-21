@@ -1,7 +1,7 @@
 package by.clevertec.check_creator.dao.fabrics;
 
 import by.clevertec.check_creator.dao.api.IProductDAO;
-import by.clevertec.check_creator.dao.implementation.ProductMemoryDAO;
+import by.clevertec.check_creator.dao.implementation.ProductDBDAO;
 
 public class ProductDAOSingleton {
 
@@ -17,7 +17,10 @@ public class ProductDAOSingleton {
         }
         synchronized (ProductDAOSingleton.class) {
             if (instance == null) {
-                instance = new ProductMemoryDAO();
+                //change the line here to
+                //instance = new ProductMemoryDAO();
+                //so that the data is read from the application memory
+                instance = new ProductDBDAO();
             }
             return instance;
         }

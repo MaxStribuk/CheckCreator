@@ -1,7 +1,7 @@
 package by.clevertec.check_creator.dao.fabrics;
 
 import by.clevertec.check_creator.dao.api.IDiscountCardDAO;
-import by.clevertec.check_creator.dao.implementation.DiscountCardMemoryDAO;
+import by.clevertec.check_creator.dao.implementation.DiscountCardDBDAO;
 
 public class DiscountCardDAOSingleton {
 
@@ -17,7 +17,10 @@ public class DiscountCardDAOSingleton {
         }
         synchronized (DiscountCardDAOSingleton.class) {
             if (instance == null) {
-                instance = new DiscountCardMemoryDAO();
+                //change the line here to
+                //instance = new DiscountCardMemoryDAO();
+                //so that the data is read from the application memory
+                instance = new DiscountCardDBDAO();
             }
             return instance;
         }
